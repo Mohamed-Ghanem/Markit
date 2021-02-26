@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import store from 'store/configureStore';
-import IntlWrapper from 'components_/IntlWrapper/IntlWrapper';
 
 export const openModal = (Component, componentProps) => {
   const div = document.createElement('div');
@@ -14,15 +11,8 @@ export const openModal = (Component, componentProps) => {
     close,
   });
 
-  const render = props => {
-    ReactDOM.render(
-      <Provider store={store}>
-        <IntlWrapper>
-          <Component {...props} />
-        </IntlWrapper>
-      </Provider>,
-      div,
-    );
+  const render = (props) => {
+    ReactDOM.render(<Component {...props} />, div);
   };
   const destroy = () => {
     const unmountResult = ReactDOM.unmountComponentAtNode(div);
@@ -42,5 +32,3 @@ export const openModal = (Component, componentProps) => {
     ...modalProps({ visible: true, centered: true, close }),
   });
 };
-
-export const x = 5;
